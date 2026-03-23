@@ -1,19 +1,23 @@
-import {test, expect} from '@playwright/test'
-import { LoginPage } from '../src/pages/login'
+import { test } from '../src/config/fixtures'
 import { RolesPage } from '../src/pages/roles'
 
 test.describe('Roles Page Tests', ()=> {
 
-    
+    let rolesPage: RolesPage
 
-    test('Verify Add application popup in roles page', async({page})=> {
-        test.setTimeout(180000)
-        const loginPage = new LoginPage(page)
-        await loginPage.userLogin()
-        const rolesPage = new RolesPage(page)
-        await rolesPage.navigateViaDashboard()
+    test.beforeEach(async({pageWithLogin})=> {
+        rolesPage = new RolesPage(pageWithLogin)
+    })
+
+    test('Verify Add application popup in roles page', async()=> {
+        await rolesPage.navigateViaDashboard('Administrator', 'Roles')
         await rolesPage.verifyAddApplication()
-        
+    })
+
+    test('Verify user can create a new role', async({})=> {
+        await rolesPage.navigateViaDashboard('Administrator', 'Roles')
+        await rolesPage.verifyAddApplication()
+        await rolesPage.createNewRole()
     })
 
 

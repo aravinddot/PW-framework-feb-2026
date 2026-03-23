@@ -1,5 +1,4 @@
 import { Page } from "playwright";
-import {expect} from '@playwright/test'
 import { GenricUtils } from "../utils/genricUtils";
 
 export class CommonPage extends GenricUtils {
@@ -12,11 +11,18 @@ export class CommonPage extends GenricUtils {
     }
 
 
-    async navigateViaDashboard() {
-        await this.page.getByText('Administrator', {exact: true}).waitFor({state: 'visible', timeout: 60000})
-        await this.page.getByText('Administrator', {exact: true}).click()
-        await this.page.getByRole('link', { name: 'Roles' }).waitFor({state: 'visible', timeout: 60000})
-        await this.page.getByRole('link', { name: 'Roles' }).click()
+    async navigateViaDashboard(parentMenu: string, childMenu?: string) {
+        await this.page.getByText(parentMenu, { exact: true }).waitFor({ state: 'visible', timeout: 60000 })
+        await this.page.getByText(parentMenu, { exact: true }).click()
+        if (childMenu) {
+            await this.page.getByRole('link', { name: childMenu }).waitFor({ state: 'visible', timeout: 60000 })
+            await this.page.getByRole('link', { name: childMenu }).click()
+        }
+    }
+
+    async randomNumGenerator() {
+        const randomNum = await Math.floor(Math.random() * 10000)
+        return randomNum;
     }
 
 
