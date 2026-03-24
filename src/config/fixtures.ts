@@ -1,9 +1,7 @@
 import {test as baseTest, Page} from '@playwright/test'
 import { LoginPage } from '../pages/login'
+import { LoginFixtures } from '../types/types'
 
-type LoginFixtures = {
-    pageWithLogin: Page
-}
 
 
 export const test = baseTest.extend<LoginFixtures>({

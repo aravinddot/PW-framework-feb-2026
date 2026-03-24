@@ -14,6 +14,11 @@ test.describe('Users Page Tests', ()=> {
         await usersPage.validateErrMessage()
     })
 
+    test('Verify user creation with valid details', async()=> {
+        await usersPage.navigateViaDashboard('Administrator', 'Users')
+        await usersPage.createNewUser()
+    })
+
 })
 
   

@@ -1,6 +1,3 @@
 
-// DB utils
-// 4-may-2026
-// 2026-05-4
 
-// genricUtils
+export const claimsPageHeader = ['Claim #', 'Address', 'Insureds', 'Claimants', 'Brokerage 1', 'File Handler', 'Defence Counsel']

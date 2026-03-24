@@ -1,9 +1,10 @@
 import { Page } from "playwright";
 import { CommonPage } from "./common";
 import {expect, Locator} from '@playwright/test'
+import { RolesPageInterfaces } from "../types/interface";
 
 
-export class RolesPage extends CommonPage {
+export class RolesPage extends CommonPage implements RolesPageInterfaces {
 
     page: Page;
     inputBox: Locator;
