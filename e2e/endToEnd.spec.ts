@@ -44,8 +44,6 @@ test.describe('End to End Tests', () => {
             await expect(page.locator('//div[@class="single-products"]').getByText(product.product_name).first()).toBeVisible();
         }
 
-
-
     })
 
 
