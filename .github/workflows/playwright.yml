@@ -8,6 +8,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment: BASE_URL        # ✅ ADD THIS - matches your environment name in GitHub
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -23,6 +24,8 @@ jobs:
 
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+        CMS_BASE_URL: ${{ vars.CMS_BASE_URL }}  # ✅ Now accessible
       continue-on-error: true
 
     - name: Generate Allure Single File Report
@@ -42,7 +45,7 @@ jobs:
       if: always()
       with:
         name: allure-report
-        path: allure-report/index.html   # ✅ Single HTML file only
+        path: allure-report/index.html
         retention-days: 30
 
     - name: Upload Allure Results (raw)
